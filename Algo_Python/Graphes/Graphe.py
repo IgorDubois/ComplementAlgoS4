@@ -1,5 +1,4 @@
-import Sommet
-import Arete
+import time
 
 class Graphe:
     def __init__(self):
@@ -10,7 +9,6 @@ class Graphe:
     def add_node(self, value):
         self.nodes.add(value)
         self.edges[value] = []
-        print self.nodes
 
     def add_edge(self, from_node, to_node, distance):
         self.edges[from_node].append(to_node)
@@ -21,9 +19,9 @@ class Graphe:
     def dijsktra(self, initial):
         visited = {initial: 0}
         path = {}
-
+        total_time = 0
         n = set(self.nodes)
-        print self.nodes
+
         while n:
             min_node = None
             for node in n:
@@ -39,10 +37,40 @@ class Graphe:
             n.remove(min_node)
             current_weight = visited[min_node]
 
+            start_time = time.time()
+
             for edge in self.edges[min_node]:
               weight = current_weight + self.distances[(min_node, edge)]
               if edge not in visited or weight < visited[edge]:
                 visited[edge] = weight
                 path[edge] = min_node
 
+            total_time += time.time() - start_time
+        print total_time
         return visited, path
+
+    def bellman_ford(self,initial):
+        visited = {initial: 0}
+        path = {}
+
+        n = set(self.nodes)
+        finished = False
+        start_time = time.time()
+        while not finished:
+            finished = True
+            to_visit = dict(visited)
+            for node in to_visit:
+                current_weight = visited[node]
+                for edge in self.edges[node]:
+                  weight = current_weight + self.distances[(node, edge)]
+                  if edge not in visited or weight < visited[edge]:
+                    visited[edge] = weight
+                    path[edge] = node
+                    finished = False
+        print time.time() - start_time
+        return visited, path
+
+
+
+        return 0
+
