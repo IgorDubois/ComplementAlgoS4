@@ -1,0 +1,42 @@
+Rechercher un elt dans un tableau de dimension n
+bool recherche(A,rang,x) => appel initial : recherche(A,1,x)
+
+Pour A non trié :
+
+    bool recherche(A, rang, x)
+        si A[rang-1] == x:
+            retourne Vrai
+        sinon si rang >= longueur(A):
+            retourne Faux
+        sinon:
+            retourne recherche(A, rang+1, x)
+        finsi
+    finrecherche
+
+
+Pour A trié :
+
+    bool recherche(A, rang, x)
+        si A[rang-1] == x:
+            retourne Vrai
+        sinon si rang >= longueur(A) ou A[rang-1] > x:
+            retourne Faux
+        sinon:
+            retourne recherche(A, rang+1, x)
+        finsi
+    finrecherche
+    
+    bool recherche_d(A,rang, x)
+        si A[rang] == x:
+            retourne Vrai
+        sinon si rang >= longueur(A) ou rang <= 0:
+            retourne Faux
+        sinon:
+            si A[rang] < x:
+                rang += (longueur(A) - rang) / 2
+            sinon:
+                rang -= (longueur(A) - rang) / 2
+            finsi
+            retourne recherche_d(A, rang, x)
+        finsi
+    finrecherche_d

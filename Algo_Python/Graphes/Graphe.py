@@ -21,11 +21,11 @@ class Graphe:
         visited = {initial: 0}
         path = {}
 
-        nodes = set(self.nodes)
+        n = set(self.nodes)
         print self.nodes
-        while nodes:
+        while n:
             min_node = None
-            for node in nodes:
+            for node in n:
               if node in visited:
                 if min_node is None:
                   min_node = node
@@ -35,7 +35,7 @@ class Graphe:
             if min_node is None:
                 break
 
-            nodes.remove(min_node)
+            n.remove(min_node)
             current_weight = visited[min_node]
 
             for edge in self.edges[min_node]:
