@@ -70,7 +70,5 @@ class Graphe:
         print time.time() - start_time
         return visited, path
 
-
-
+    def kruskal(self,initial):
         return 0
-

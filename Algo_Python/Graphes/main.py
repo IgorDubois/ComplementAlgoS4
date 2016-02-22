@@ -4,8 +4,7 @@ import Graphe
 import time
 import random
 
-nb_nodes = 10000
-nb_edges = 20000
+nb_nodes = 1000
 
 g = Graphe.Graphe()
 
@@ -27,8 +26,9 @@ nodes = node_full
 for node in nodes:
     g.add_node(node)
 
-for j in range(0,nb_edges):
-    g.add_edge(node_full[random.randint(0,nb_nodes-1)] , node_full[random.randint(0,nb_nodes-1)] , random.randint(2 , 20))
+for j in range(0,nb_nodes):
+    for k in range(j+1,nb_nodes):
+        g.add_edge(nodes[j],nodes[k],random.randint(2,10)*2)
 '''
 
 g.add_edge(node_1 , node_2 , 1)
